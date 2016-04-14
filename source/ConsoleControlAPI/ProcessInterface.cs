@@ -119,7 +119,7 @@ namespace ConsoleControlAPI
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <param name="arguments">The arguments.</param>
-        public void StartProcess(string fileName, string arguments)
+        public void StartProcess(string fileName, string arguments, string workingDir = null)
         {
             //  Create the process start info.
             var processStartInfo = new ProcessStartInfo(fileName, arguments);
@@ -128,6 +128,10 @@ namespace ConsoleControlAPI
             processStartInfo.UseShellExecute = false;
             processStartInfo.ErrorDialog = false;
             processStartInfo.CreateNoWindow = true;
+            if(workingDir != null)
+            {
+                processStartInfo.WorkingDirectory = workingDir;
+            }
 
             //  Specify redirection.
             processStartInfo.RedirectStandardError = true;
