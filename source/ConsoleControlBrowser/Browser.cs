@@ -18,6 +18,8 @@ namespace ConsoleControlBrowser
             var newTab = new TabPage();
             newTab.Text = "Console" + (Tabs.TabPages.Count > 0 ? (Tabs.TabPages.Count + 1).ToString() : "");
             newTab.BorderStyle = BorderStyle.None;
+            newTab.BackColor = Color.Black;
+            newTab.Padding = new Padding(7);
             Tabs.TabPages.Add(newTab);
             Tabs.SelectedTab = newTab;
 
