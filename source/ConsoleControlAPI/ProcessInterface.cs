@@ -261,7 +261,7 @@ namespace ConsoleControlAPI
         {
             if (IsProcessRunning)
             {
-                inputWriter.WriteLine(input);
+                inputWriter.Write(input);
                 inputWriter.Flush();
             }
         }

@@ -5,27 +5,13 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleControl", "ConsoleControl\ConsoleControl.csproj", "{737CC7F2-EC7C-4800-B7EB-72637E892C42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleControlSample", "ConsoleControlSample\ConsoleControlSample.csproj", "{85D51BC3-E7F2-4C63-80B4-D16BE768707E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleControlAPI", "ConsoleControlAPI\ConsoleControlAPI.csproj", "{A4B8573F-EBFC-4140-B8AA-7C037919EF57}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleControl.WPF", "ConsoleControl.WPF\ConsoleControl.WPF.csproj", "{FD9FF553-D7C6-45A8-8321-5D9058B38E2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleControlSample.WPF", "ConsoleControlSample.WPF\ConsoleControlSample.WPF.csproj", "{4FA35552-432C-4AEF-8B5B-05883D11F098}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Controls", "Controls", "{75F316A9-2D1A-4788-B37B-8671FA2F17ED}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0. Shared", "0. Shared", "{39EC3474-A060-422A-8D28-D6D902A65F02}"
-	ProjectSection(SolutionItems) = preProject
-		ConsoleControl.pfx = ConsoleControl.pfx
-		SharedAssemblyInfo.cs = SharedAssemblyInfo.cs
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Controls", "1. Controls", "{75F316A9-2D1A-4788-B37B-8671FA2F17ED}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Samples", "2. Samples", "{88DD7B77-D58C-4AF8-B21B-A2FE9B3C74C2}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Browser", "3. Browser", "{B733AC61-E610-4D56-ABD0-51D13C509DA3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleControlBrowser", "ConsoleControlBrowser\ConsoleControlBrowser.csproj", "{A80196B2-900B-44C7-A85A-172AECF9AAA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commandeer", "ConsoleControlBrowser\Commandeer.csproj", "{A80196B2-900B-44C7-A85A-172AECF9AAA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,16 +33,6 @@ Global
 		{737CC7F2-EC7C-4800-B7EB-72637E892C42}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{737CC7F2-EC7C-4800-B7EB-72637E892C42}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{737CC7F2-EC7C-4800-B7EB-72637E892C42}.Release|x86.ActiveCfg = Release|Any CPU
-		{85D51BC3-E7F2-4C63-80B4-D16BE768707E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{85D51BC3-E7F2-4C63-80B4-D16BE768707E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{85D51BC3-E7F2-4C63-80B4-D16BE768707E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{85D51BC3-E7F2-4C63-80B4-D16BE768707E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{85D51BC3-E7F2-4C63-80B4-D16BE768707E}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{85D51BC3-E7F2-4C63-80B4-D16BE768707E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{85D51BC3-E7F2-4C63-80B4-D16BE768707E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{85D51BC3-E7F2-4C63-80B4-D16BE768707E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{85D51BC3-E7F2-4C63-80B4-D16BE768707E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{85D51BC3-E7F2-4C63-80B4-D16BE768707E}.Release|x86.ActiveCfg = Release|Any CPU
 		{A4B8573F-EBFC-4140-B8AA-7C037919EF57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A4B8573F-EBFC-4140-B8AA-7C037919EF57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4B8573F-EBFC-4140-B8AA-7C037919EF57}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -77,17 +53,6 @@ Global
 		{FD9FF553-D7C6-45A8-8321-5D9058B38E2D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{FD9FF553-D7C6-45A8-8321-5D9058B38E2D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{FD9FF553-D7C6-45A8-8321-5D9058B38E2D}.Release|x86.ActiveCfg = Release|Any CPU
-		{4FA35552-432C-4AEF-8B5B-05883D11F098}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{4FA35552-432C-4AEF-8B5B-05883D11F098}.Debug|Any CPU.Build.0 = Debug|x86
-		{4FA35552-432C-4AEF-8B5B-05883D11F098}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{4FA35552-432C-4AEF-8B5B-05883D11F098}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{4FA35552-432C-4AEF-8B5B-05883D11F098}.Debug|x86.ActiveCfg = Debug|x86
-		{4FA35552-432C-4AEF-8B5B-05883D11F098}.Debug|x86.Build.0 = Debug|x86
-		{4FA35552-432C-4AEF-8B5B-05883D11F098}.Release|Any CPU.ActiveCfg = Release|x86
-		{4FA35552-432C-4AEF-8B5B-05883D11F098}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{4FA35552-432C-4AEF-8B5B-05883D11F098}.Release|Mixed Platforms.Build.0 = Release|x86
-		{4FA35552-432C-4AEF-8B5B-05883D11F098}.Release|x86.ActiveCfg = Release|x86
-		{4FA35552-432C-4AEF-8B5B-05883D11F098}.Release|x86.Build.0 = Release|x86
 		{A80196B2-900B-44C7-A85A-172AECF9AAA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A80196B2-900B-44C7-A85A-172AECF9AAA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A80196B2-900B-44C7-A85A-172AECF9AAA2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -106,10 +71,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{737CC7F2-EC7C-4800-B7EB-72637E892C42} = {75F316A9-2D1A-4788-B37B-8671FA2F17ED}
-		{85D51BC3-E7F2-4C63-80B4-D16BE768707E} = {88DD7B77-D58C-4AF8-B21B-A2FE9B3C74C2}
 		{A4B8573F-EBFC-4140-B8AA-7C037919EF57} = {75F316A9-2D1A-4788-B37B-8671FA2F17ED}
 		{FD9FF553-D7C6-45A8-8321-5D9058B38E2D} = {75F316A9-2D1A-4788-B37B-8671FA2F17ED}
-		{4FA35552-432C-4AEF-8B5B-05883D11F098} = {88DD7B77-D58C-4AF8-B21B-A2FE9B3C74C2}
-		{A80196B2-900B-44C7-A85A-172AECF9AAA2} = {B733AC61-E610-4D56-ABD0-51D13C509DA3}
 	EndGlobalSection
 EndGlobal

@@ -84,7 +84,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Tabs);
             this.Name = "Browser";
-            this.Text = "Consoul";
+            this.Text = "Commandeer";
             this.ResumeLayout(false);
 
         }

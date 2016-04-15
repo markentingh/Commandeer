@@ -179,8 +179,8 @@ namespace ConsoleControl
             if (e.KeyCode == Keys.Return)
             {
                 //  Get the input.
-                string input = richTextBoxConsole.Text.Substring(inputStart, (richTextBoxConsole.SelectionStart) - inputStart);
-
+                string input = richTextBoxConsole.Text.Substring(inputStart, (richTextBoxConsole.SelectionStart) - inputStart) + "\n";
+                Console.WriteLine(input);
                 //  Write the input (without echoing).
                 WriteInput(input, Color.White, false);
             }
@@ -314,7 +314,7 @@ namespace ConsoleControl
         /// <summary>
         /// Current position that input starts at.
         /// </summary>
-        int inputStart = -1;
+        int inputStart = 0;
 
         /// <summary>
         /// The is input enabled flag.
