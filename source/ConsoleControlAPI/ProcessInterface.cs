@@ -373,5 +373,10 @@ namespace ConsoleControlAPI
         {
             get { return processArguments; }
         }
+
+        public void CloseInput()
+        {
+            Process.StandardInput.Close();
+        }
     }
 }

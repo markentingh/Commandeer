@@ -18,7 +18,6 @@ namespace ConsoleControl
     /// <summary>
     /// The Console Control allows you to embed a basic console in your application.
     /// </summary>
-    [ToolboxBitmap(typeof(Resfinder), "ConsoleControl.ConsoleControl.bmp")]
     public partial class ConsoleControl : UserControl
     {
         /// <summary>
@@ -28,35 +27,27 @@ namespace ConsoleControl
         {
             //  Initialise the component.
             InitializeComponent();
-
-            //  Show diagnostics disabled by default.
             ShowDiagnostics = false;
-
-            //  Input enabled by default.
             IsInputEnabled = true;
-
-            //  Disable special commands by default.
             SendKeyboardCommandsToProcess = true;
-
-            //  Initialise the keymappings.
             InitialiseKeyMappings();
 
             //  Handle process events.
-            processInterace.OnProcessOutput += processInterace_OnProcessOutput;
-            processInterace.OnProcessError += processInterace_OnProcessError;
-            processInterace.OnProcessInput += processInterace_OnProcessInput;
-            processInterace.OnProcessExit += processInterace_OnProcessExit;
+            process.OnProcessOutput += process_OnProcessOutput;
+            process.OnProcessError += process_OnProcessError;
+            process.OnProcessInput += process_OnProcessInput;
+            process.OnProcessExit += process_OnProcessExit;
 
             //  Wait for key down messages on the rich text box.
             richTextBoxConsole.KeyDown += richTextBoxConsole_KeyDown;
         }
 
         /// <summary>
-        /// Handles the OnProcessError event of the processInterace control.
+        /// Handles the OnProcessError event of the process control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="args">The <see cref="ProcessEventArgs"/> instance containing the event data.</param>
-        void processInterace_OnProcessError(object sender, ProcessEventArgs args)
+        void process_OnProcessError(object sender, ProcessEventArgs args)
         {
             //  Write the output, in red
             WriteOutput(args.Content, Color.Red);
@@ -66,11 +57,11 @@ namespace ConsoleControl
         }
 
         /// <summary>
-        /// Handles the OnProcessOutput event of the processInterace control.
+        /// Handles the OnProcessOutput event of the process control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="args">The <see cref="ProcessEventArgs"/> instance containing the event data.</param>
-        void processInterace_OnProcessOutput(object sender, ProcessEventArgs args)
+        void process_OnProcessOutput(object sender, ProcessEventArgs args)
         {
             //  Write the output, in white
             var color = Color.White;
@@ -90,26 +81,26 @@ namespace ConsoleControl
         }
 
         /// <summary>
-        /// Handles the OnProcessInput event of the processInterace control.
+        /// Handles the OnProcessInput event of the process control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="args">The <see cref="ProcessEventArgs"/> instance containing the event data.</param>
-        void processInterace_OnProcessInput(object sender, ProcessEventArgs args)
+        void process_OnProcessInput(object sender, ProcessEventArgs args)
         {
             throw new NotImplementedException();
         }
 
         /// <summary>
-        /// Handles the OnProcessExit event of the processInterace control.
+        /// Handles the OnProcessExit event of the process control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="args">The <see cref="ProcessEventArgs"/> instance containing the event data.</param>
-        void processInterace_OnProcessExit(object sender, ProcessEventArgs args)
+        void process_OnProcessExit(object sender, ProcessEventArgs args)
         {
             //  Are we showing diagnostics?
             if (ShowDiagnostics)
             {
-                WriteOutput(Environment.NewLine + processInterace.ProcessFileName + " exited.", Color.FromArgb(255, 0, 255, 0));
+                WriteOutput(Environment.NewLine + process.ProcessFileName + " exited.", Color.FromArgb(255, 0, 255, 0));
             }
             
             if (!this.IsHandleCreated)
@@ -155,8 +146,13 @@ namespace ConsoleControl
                 //  Go through each mapping, send the message.
                 foreach (var mapping in mappings)
                 {
+                    if(mapping.IsControlPressed == true && mapping.KeyCode == Keys.C)
+                    {
+                        //Ctrl + C pressed
+                        //process.CloseInput();
+                    }
                     //SendKeysEx.SendKeys(CurrentProcessHwnd, mapping.SendKeysMapping);
-                    WriteInput(mapping.StreamMapping, Color.White, false);
+                    //WriteInput(mapping.StreamMapping, Color.White, false);
                     //WriteInput("\x3", Color.White, false);
                 }
 
@@ -218,7 +214,6 @@ namespace ConsoleControl
                 richTextBoxConsole.SelectedText += output;
                 richTextBoxConsole.SelectionStart = richTextBoxConsole.Text.Length;
                 inputStart = richTextBoxConsole.Text.Length;
-                Console.Write(inputStart + " == " + richTextBoxConsole.Text.Length);
             }));
         }
 
@@ -252,7 +247,7 @@ namespace ConsoleControl
                 lastInput = input;
 
                 //  Write the input.
-                processInterace.WriteInput(input);
+                process.WriteInput(input);
 
                 //  Fire the event.
                 FireConsoleInputEvent(input);
@@ -279,7 +274,7 @@ namespace ConsoleControl
             }
 
             //  Start the process.
-            processInterace.StartProcess(fileName, arguments, workingDir);
+            process.StartProcess(fileName, arguments, workingDir);
 
             //  If we enable input, make the control not read only.
             if (IsInputEnabled)
@@ -292,7 +287,7 @@ namespace ConsoleControl
         public void StopProcess()
         {
             //  Stop the interface.
-            processInterace.StopProcess();
+            process.StopProcess();
         }
         
         /// <summary>
@@ -322,7 +317,7 @@ namespace ConsoleControl
         /// <summary>
         /// The internal process interface used to interface with the process.
         /// </summary>
-        private readonly ProcessInterface processInterace = new ProcessInterface();
+        private readonly ProcessInterface process = new ProcessInterface();
         
         /// <summary>
         /// Current position that input starts at.
@@ -407,7 +402,7 @@ namespace ConsoleControl
         [Browsable(false)]
         public bool IsProcessRunning
         {
-            get { return processInterace.IsProcessRunning; }
+            get { return process.IsProcessRunning; }
         }
 
         /// <summary>
@@ -425,7 +420,7 @@ namespace ConsoleControl
         [Browsable(false)]
         public ConsoleControlAPI.ProcessInterface ProcessInterface
         {
-            get { return processInterace; }
+            get { return process; }
         }
 
         /// <summary>
@@ -488,9 +483,4 @@ namespace ConsoleControl
             }
         }
     }
-
-    /// <summary>
-    /// Used to allow us to find resources properly.
-    /// </summary>
-    public class Resfinder {}
 }
