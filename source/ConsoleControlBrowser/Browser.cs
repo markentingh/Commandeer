@@ -37,7 +37,7 @@ namespace ConsoleControlBrowser
             newTab.Controls.Add(newConsole);
 
             //start cmd process for console
-            newConsole.StartProcess("cmd", "/c c:\\cygwin\\bin\\bash.exe", "C:\\");
+            newConsole.StartProcess("c:\\cygwin\\bin\\bash.exe", "--login -i ", "c:\\cygwin\\bin\\");
         }
 
         private void button1_Click(object sender, EventArgs e)

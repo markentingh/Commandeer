@@ -36,7 +36,7 @@ namespace ConsoleControl
             IsInputEnabled = true;
 
             //  Disable special commands by default.
-            SendKeyboardCommandsToProcess = false;
+            SendKeyboardCommandsToProcess = true;
 
             //  Initialise the keymappings.
             InitialiseKeyMappings();
@@ -73,7 +73,17 @@ namespace ConsoleControl
         void processInterace_OnProcessOutput(object sender, ProcessEventArgs args)
         {
             //  Write the output, in white
-            WriteOutput(args.Content, Color.White);
+            var color = Color.White;
+            
+            //detect input command & change color of output
+            if(lastInput == "ls" || lastInput.IndexOf("ls ") == 0)
+            {
+                color = Color.LightSeaGreen;
+            }
+
+            var output = args.Content.Replace("\r", "\n");
+
+            WriteOutput(output, color);
 
             //  Fire the output event.
             FireConsoleOutputEvent(args.Content);
@@ -120,7 +130,7 @@ namespace ConsoleControl
             keyMappings.Add(new KeyMapping(false, false, false, Keys.Tab, "{TAB}", "\t"));
 
             //  Map 'Ctrl-C'.
-            keyMappings.Add(new KeyMapping(true, false, false, Keys.C, "^(c)", "\x03\r\n"));
+            keyMappings.Add(new KeyMapping(true, false, false, Keys.C, "^(c)", "\x03"));
         }
 
         /// <summary>
@@ -146,8 +156,8 @@ namespace ConsoleControl
                 foreach (var mapping in mappings)
                 {
                     //SendKeysEx.SendKeys(CurrentProcessHwnd, mapping.SendKeysMapping);
-                    //inputWriter.WriteLine(mapping.StreamMapping);
-//WriteInput("\x3", Color.White, false);
+                    WriteInput(mapping.StreamMapping, Color.White, false);
+                    //WriteInput("\x3", Color.White, false);
                 }
 
                 //  If we handled a mapping, we're done here.
@@ -179,10 +189,11 @@ namespace ConsoleControl
             if (e.KeyCode == Keys.Return)
             {
                 //  Get the input.
-                string input = richTextBoxConsole.Text.Substring(inputStart, (richTextBoxConsole.SelectionStart) - inputStart) + "\n";
+                string input = richTextBoxConsole.Text.Substring(inputStart, (richTextBoxConsole.SelectionStart) - inputStart).Replace("\r","").Replace("\n","");
                 Console.WriteLine(input);
                 //  Write the input (without echoing).
                 WriteInput(input, Color.White, false);
+                inputStart = richTextBoxConsole.Text.Length;
             }
         }
 
@@ -205,7 +216,9 @@ namespace ConsoleControl
                 //  Write the output.
                 richTextBoxConsole.SelectionColor = color;
                 richTextBoxConsole.SelectedText += output;
-                inputStart = richTextBoxConsole.SelectionStart;
+                richTextBoxConsole.SelectionStart = richTextBoxConsole.Text.Length;
+                inputStart = richTextBoxConsole.Text.Length;
+                Console.Write(inputStart + " == " + richTextBoxConsole.Text.Length);
             }));
         }
 

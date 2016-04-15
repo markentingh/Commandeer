@@ -33,12 +33,13 @@
             // 
             // richTextBoxConsole
             // 
-            this.richTextBoxConsole.AcceptsTab = true;
             this.richTextBoxConsole.BackColor = System.Drawing.Color.Black;
             this.richTextBoxConsole.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxConsole.DetectUrls = false;
             this.richTextBoxConsole.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBoxConsole.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBoxConsole.Font = new System.Drawing.Font("Courier New", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.richTextBoxConsole.ForeColor = System.Drawing.Color.White;
+            this.richTextBoxConsole.HideSelection = false;
             this.richTextBoxConsole.Location = new System.Drawing.Point(0, 0);
             this.richTextBoxConsole.Name = "richTextBoxConsole";
             this.richTextBoxConsole.ReadOnly = true;
