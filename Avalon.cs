@@ -1,40 +1,27 @@
 ﻿using System;
 using System.Windows.Media;
+using ICSharpCode.AvalonEdit;
 using ICSharpCode.AvalonEdit.Rendering;
 using ICSharpCode.AvalonEdit.Document;
 
-namespace ConsoleControlBrowser
+namespace Commandeer
 {
     class LineColorizer : DocumentColorizingTransformer
     {
-        int lineNumber;
-        Brush color;
+        public int LineNumber;
+        public Brush color;
+        public bool deleted = false;
 
         public LineColorizer(int lineNumber, Brush color)
         {
-            this.lineNumber = lineNumber;
+            LineNumber = lineNumber;
             this.color = color;
-        }
-
-        public int LineNumber
-        {
-            get { return lineNumber; }
-            set
-            {
-                if (value < 1)
-                {
-                    lineNumber = 1;
-                }
-                else
-                {
-                    lineNumber = value;
-                }
-            }
         }
 
         protected override void ColorizeLine(DocumentLine line)
         {
-            if (!line.IsDeleted && line.LineNumber == lineNumber)
+            if(deleted == true) { return; }
+            if (!line.IsDeleted && line.LineNumber == LineNumber)
             {
                 ChangeLinePart(line.Offset, line.EndOffset, ApplyChanges);
             }
@@ -46,4 +33,5 @@ namespace ConsoleControlBrowser
             element.TextRunProperties.SetForegroundBrush(color);
         }
     }
+   
 }

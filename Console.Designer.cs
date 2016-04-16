@@ -1,4 +1,4 @@
-﻿namespace ConsoleControlBrowser
+﻿namespace Commandeer
 {
     partial class Console
     {

@@ -7,8 +7,8 @@
     <ProjectGuid>{A80196B2-900B-44C7-A85A-172AECF9AAA2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConsoleControlBrowser</RootNamespace>
-    <AssemblyName>ConsoleControlBrowser</AssemblyName>
+    <RootNamespace>Commandeer</RootNamespace>
+    <AssemblyName>Commandeer</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -97,16 +97,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ConsoleControlAPI\ConsoleControlAPI.csproj">
-      <Project>{a4b8573f-ebfc-4140-b8aa-7c037919ef57}</Project>
-      <Name>ConsoleControlAPI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ConsoleControl\ConsoleControl.csproj">
-      <Project>{737cc7f2-ec7c-4800-b7eb-72637e892c42}</Project>
-      <Name>ConsoleControl</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

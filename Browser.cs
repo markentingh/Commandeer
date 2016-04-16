@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace ConsoleControlBrowser
+namespace Commandeer
 {
     public partial class Browser : Form
     {
@@ -32,6 +32,8 @@ namespace ConsoleControlBrowser
 
             newTab.Controls.Add(newConsole);
 
+            //start console
+            newConsole.MaxLines = 500;
             newConsole.Start();
         }
 
